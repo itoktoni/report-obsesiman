@@ -12,6 +12,7 @@ use GeoSot\EnvEditor\Facades\EnvEditor;
 use GeoSot\EnvEditor\ServiceProvider;
 use Ibex\CrudGenerator\CrudServiceProvider;
 use Illuminate\Support\Str;
+use Kirschbaum\PowerJoins\PowerJoinsServiceProvider;
 use MBarlow\Megaphone\MegaphoneServiceProvider;
 use Plugins\Query;
 use Plugins\Template;
@@ -203,6 +204,7 @@ return [
         FacadeServiceProviders::class,
         CrudServiceProvider::class,
         MegaphoneServiceProvider::class,
+        PowerJoinsServiceProvider::class,
     ],
 
     /*

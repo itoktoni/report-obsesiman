@@ -8,6 +8,7 @@ use Coderello\SharedData\Facades\SharedData;
 use Illuminate\Bus\Batch;
 use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -348,6 +349,11 @@ if (! function_exists('exportCsv')) {
             })
             ->finally(function (Batch $batch) use ($name) {
                 Storage::disk('local')->delete($name);
+
+                if(Cache::has($name))
+                {
+                    Cache::forget($name);
+                }
             })
             ->dispatch();
 

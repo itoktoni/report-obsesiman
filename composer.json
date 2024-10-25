@@ -13,7 +13,7 @@
         "bensampo/laravel-enum": "^6.2",
         "hammerstone/fast-paginate": "^1.1",
         "izniburak/laravel-auto-routes": "1.6.0",
-        "kirschbaum-development/eloquent-power-joins": "*",
+        "kirschbaum-development/eloquent-power-joins": "^4.0",
         "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^11.0",
         "laravel/sanctum": "*",
