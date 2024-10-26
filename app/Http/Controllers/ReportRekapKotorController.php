@@ -6,7 +6,7 @@ use App\Dao\Models\Rs;
 use App\Http\Controllers\Core\ReportController;
 use App\Jobs\JobRekapKotor;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class ReportRekapKotorController extends ReportController
 {
@@ -37,7 +37,9 @@ class ReportRekapKotorController extends ReportController
 
         $this->data = $this->getData();
 
-        $name = 'Report Rekap Kotor';
+        $rs = Rs::find($request->rs_id);
+
+        $name = 'Report Rekap Kotor '.$rs->field_name;
 
         $batch = exportCsv($name, $this->getData(), JobRekapKotor::class, $request->all(), env('CSV_DELIMITER', ','), 1);
 

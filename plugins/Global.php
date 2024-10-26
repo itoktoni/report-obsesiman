@@ -307,7 +307,9 @@ if (! function_exists('exportCsv')) {
         $total = $query->count();
         $numberOfChunks = ceil($total / $chunkSize);
 
-        $name = 'public/files/export/'.Str::snake($name).'-'.now()->toDateString().'-'.str_replace(':', '-', now()->toTimeString()).'.csv';
+        $infoName = $name;
+
+        $name = 'public/files/export/'.$name.'-'.now()->toDateString().'-'.str_replace(':', '', now()->toTimeString()).'.csv';
         $batches = [];
 
         for ($i = 1; $i <= $numberOfChunks; $i++) {
@@ -318,14 +320,14 @@ if (! function_exists('exportCsv')) {
 
         $bus = Bus::batch($batches)
             ->name('Export Users')
-            ->then(function (Batch $batch) use ($name, $user_id) {
+            ->then(function (Batch $batch) use ($name, $user_id, $infoName) {
                 Storage::put($name, file_get_contents($name));
 
                 Log::info($name);
 
                 $notification = new \MBarlow\Megaphone\Types\NewFeature(
-                    'Download File Success',
-                    'File Ready to download',
+                    'File Ready untuk di download',
+                    $infoName,
                     asset(str_replace('public/', '', $name)),
                     'Download'
                 );
